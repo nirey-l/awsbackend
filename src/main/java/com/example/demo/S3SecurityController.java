@@ -20,11 +20,11 @@ import org.springframework.beans.factory.annotation.Value;
 public class S3SecurityController {
 
     private final S3Client s3Client;
-    private final String BUCKET_NAME;
+    private final String bucketName; // 소문자 카멜케이스로 수정
 
     public S3SecurityController(S3Client s3Client, @Value("${cloud.aws.s3.bucket}") String bucketName) {
         this.s3Client = s3Client;
-        this.BUCKET_NAME = bucketName;
+        this.bucketName = bucketName;
     }
 
     // 파일 업로드 API
@@ -33,7 +33,7 @@ public class S3SecurityController {
         String fileName = file.getOriginalFilename();
         
         PutObjectRequest putObjectRequest = PutObjectRequest.builder()
-                .bucket(BUCKET_NAME)
+                .bucket(bucketName)
                 .key(fileName)
                 .contentType(file.getContentType())
                 .build();
@@ -50,7 +50,7 @@ public class S3SecurityController {
     public ResponseEntity<Resource> previewFile(@PathVariable String fileName) {
         // 1. S3 객체 가져오기 요청
         GetObjectRequest getObjectRequest = GetObjectRequest.builder()
-                .bucket(BUCKET_NAME)
+                .bucket(bucketName)
                 .key(fileName)
                 .build();
 
@@ -67,5 +67,3 @@ public class S3SecurityController {
                 .body(resource);
     }
 }
-
-

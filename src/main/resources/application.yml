@@ -1,9 +1,9 @@
 server:
   port: 8080
 
-# spring:
-#   application:
-#     name: aws-lab-backend
+spring:
+  application:
+    name: aws-lab-backend
 #   datasource:
 #     url: ${DB_URL}
 #     username: ${DB_USERNAME:admin}
@@ -20,5 +20,5 @@ server:
 cloud:
   aws:
     region: us-west-1
-  s3:
-    bucket: ${S3_BUCKET_NAME:awslab2026-bucket-test}
+    s3: 
+      bucket: ${S3_BUCKET_NAME:awslab2026-bucket-test}
